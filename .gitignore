@@ -54,3 +54,4 @@ $RECYCLE.BIN/
 .vs/
 
 # JetBrains cache directory
+.idea/
