@@ -10,7 +10,7 @@ $upass = strip_tags($upass);
 $password = hash('sha256', $upass);
 
 $query = "SELECT username FROM LOA.t_user WHERE email = '$email' AND password = '$password'";
-$result = mysqli_query($$link, $query);
+$result = mysqli_query($link, $query);
 
 $row = mysqli_fetch_row($result);
 if ($row) {
