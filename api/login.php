@@ -9,12 +9,12 @@ $upass = strip_tags($upass);
 
 $password = hash('sha256', $upass);
 
-$query = "SELECT username FROM LOA.t_user WHERE username = '$username' AND password = '$password'";
+$query = "SELECT user_id, username FROM LOA.t_user WHERE username = '$username' AND password = '$password'";
 $result = mysqli_query($link, $query);
 
 $row = mysqli_fetch_row($result);
 if ($row) {
-	$dataArray = array('success' => true, 'error' => '', 'username' => "$username");
+	$dataArray = array('success' => true, 'error' => '', 'user_id' => "$row[0]", 'username' => "$username");
 } else {
 	$dataArray = array('success' => false, 'error' => 'Invalid username or password', 'username' => '');
 }
