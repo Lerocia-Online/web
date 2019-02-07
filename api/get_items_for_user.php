@@ -11,8 +11,6 @@ if ($user_id == '') {
 
 $user_id = strip_tags($user_id);
 
-$password = hash('sha256', $upass);
-
 $query = "SELECT item_id, amount FROM LOA.t_user_item WHERE user_id = '$user_id'";
 $dataArray = array();
 
