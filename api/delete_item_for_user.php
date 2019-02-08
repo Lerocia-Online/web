@@ -4,8 +4,6 @@ include_once 'database.php';
 $user_id = $_POST['user_id'];
 $item_id = $_POST['item_id'];
 
-echo array_values($item_id);
-
 if ($user_id == '' || $item_id == '') {
     $dataArray = array('success' => false, 'error' => 'must provide both user id and item id');
     header('Content-Type: application/json');
