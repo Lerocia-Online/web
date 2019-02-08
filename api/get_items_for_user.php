@@ -11,13 +11,13 @@ if ($user_id == '') {
 
 $user_id = strip_tags($user_id);
 
-$query = "SELECT item_id, amount FROM LOA.t_user_item WHERE user_id = '$user_id'";
+$query = "SELECT item_id FROM LOA.t_user_item WHERE user_id = '$user_id'";
 $dataArray = array();
 
 if ($result = mysqli_query($link, $query)) {
   // Fetch one and one row
   while ($row = mysqli_fetch_row($result)) {
-  	$dataArray[] = array('item_id' => $row[0], 'amount' => $row[1]);
+  	$dataArray[] = array('item_id' => $row[0]);
   }
   // Free result set
   mysqli_free_result($result);
