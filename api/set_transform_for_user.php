@@ -17,6 +17,13 @@ if ($user_id == '') {
 
 $user_id = strip_tags($user_id);
 
+$position_x = (float) $position_x;
+$position_y = (float) $position_y;
+$position_z = (float) $position_z;
+$rotation_x = (float) $rotation_x;
+$rotation_y = (float) $rotation_y;
+$rotation_z = (float) $rotation_z;
+
 $query = "
 UPDATE LOA.t_user
   SET 
