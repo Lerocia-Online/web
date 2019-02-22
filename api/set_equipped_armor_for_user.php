@@ -4,7 +4,7 @@ include_once 'database.php';
 $user_id = $_POST['user_id'];
 $armor_id = $_POST['armor_id'];
 
-if ($user_id == '' || $armor_id) {
+if ($user_id == '' || $armor_id == '') {
     $dataArray = array('success' => false, 'error' => 'must provide user id and armor id');
     header('Content-Type: application/json');
     die(json_encode($dataArray));
