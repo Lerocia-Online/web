@@ -8,7 +8,8 @@ $position_z = $_POST['position_z'];
 $rotation_x = $_POST['rotation_x'];
 $rotation_y = $_POST['rotation_y'];
 $rotation_z = $_POST['rotation_z'];
-$enemy = $_POST['enemy'];
+$type = $_POST['type'];
+$dialogue_id = $_POST['dialogue_id'];
 
 if ($npc_name == '') {
     $dataArray = array('success' => false, 'error' => 'must provide npc name');
@@ -26,7 +27,8 @@ $query = "INSERT INTO LOA.t_npc (
     rotation_x,
     rotation_y,
     rotation_z,
-    enemy
+    type,
+    dialogue_id
 ) values (
     '$npc_name',
     '$position_x',
@@ -35,7 +37,8 @@ $query = "INSERT INTO LOA.t_npc (
     '$rotation_x',
     '$rotation_y',
     '$rotation_z',
-    '$enemy'
+    '$type',
+    '$dialogue_id'
 )";
 if (mysqli_query($link, $query)) {
     $dataArray = array('success' => true, 'error' => '');
