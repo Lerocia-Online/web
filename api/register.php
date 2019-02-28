@@ -32,19 +32,19 @@ if ($row) {
     if ($character_result = mysqli_query($link, $character_query)) {
         mysqli_free_result($character_result);
         if ($character_id = mysqli_insert_id($link)) {
-            $user_query = "
-            INSERT INTO LOA.t_user (
+            $player_query = "
+            INSERT INTO LOA.t_player (
                 character_id,
                 password
             ) VALUES (
                 '$character_id',
                 '$password'
             )";
-            if ($user_result = mysqli_query($link, $user_query)) {
-                mysqli_free_result($user_result);
+            if ($player_result = mysqli_query($link, $player_query)) {
+                mysqli_free_result($player_result);
                 $dataArray = array('success' => true, 'error' => '');
             } else {
-                $dataArray = array('success' => false, 'error' => 'Could not insert into t_user');
+                $dataArray = array('success' => false, 'error' => 'Could not insert into t_player');
             }
         } else {
             $dataArray = array('success' => false, 'error' => 'Could not get character_id');

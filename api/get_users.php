@@ -4,7 +4,7 @@ include_once 'database.php';
 $query = "
 SELECT 
 	LOA.t_character.character_id, 
-	LOA.t_user.user_id,
+	LOA.t_player.player_id,
 	character_name, 
 	character_personality, 
 	position_x, 
@@ -21,9 +21,9 @@ SELECT
 	weapon_id, 
 	apparel_id, 
 	dialogue_id,
-    LOA.t_user.logged_in
+    LOA.t_player.logged_in
 FROM LOA.t_character
-JOIN LOA.t_user ON LOA.t_character.character_id = LOA.t_user.character_id
+JOIN LOA.t_player ON LOA.t_character.character_id = LOA.t_player.character_id
 ";
 $dataArray = array();
 
@@ -32,7 +32,7 @@ if ($result = mysqli_query($link, $query)) {
     while ($row = mysqli_fetch_row($result)) {
         $dataArray[] = array(
             'character_id' => $row[0],
-            'user_id' => $row[1],
+            'player_id' => $row[1],
             'character_name' => $row[2],
             'character_personality' => $row[3],
             'position_x' => $row[4],
