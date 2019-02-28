@@ -1,11 +1,11 @@
 <?php
 include_once 'database.php';
 
-$user_id = $_POST['user_id'];
+$character_id = $_POST['character_id'];
 
-$user_id = strip_tags($user_id);
+$character_id = strip_tags($character_id);
 
-$query = "UPDATE LOA.t_user SET logged_in = 0 WHERE user_id = '$user_id'";
+$query = "UPDATE LOA.t_user SET logged_in = 0 WHERE character_id = '$character_id'";
 
 if ($result = mysqli_query($link, $query)) {
     $dataArray = array('success' => true, 'error' => '');

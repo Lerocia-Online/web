@@ -1,18 +1,18 @@
 <?php
 include_once 'database.php';
 
-$npc_id = $_POST['npc_id'];
+$character_id = $_POST['character_id'];
 $item_id = $_POST['item_id'];
 
-if ($npc_id == '' || $item_id == '') {
-    $dataArray = array('success' => false, 'error' => 'must provide both npc id and item id');
+if ($character_id == '' || $item_id == '') {
+    $dataArray = array('success' => false, 'error' => 'must provide both character id and item id');
     header('Content-Type: application/json');
     die(json_encode($dataArray));
 }
 
-$npc_id = strip_tags($npc_id);
+$character_id = strip_tags($character_id);
 
-$query = "INSERT INTO LOA.t_npc_item VALUES ('$npc_id', '$item_id')";
+$query = "INSERT INTO LOA.t_character_item (character_id, item_id) VALUES ('$character_id', '$item_id')";
 
 $dataArray = array();
 if ($result = mysqli_query($link, $query)) {

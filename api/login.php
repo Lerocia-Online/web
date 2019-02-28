@@ -1,23 +1,33 @@
 <?php
 include_once 'database.php';
 
-$username = $_POST['username'];
-$upass = $_POST['password'];
+$character_name = $_POST['username'];
+$password = $_POST['password'];
 
-$username = strip_tags($username);
-$upass = strip_tags($upass);
+$character_name = strip_tags($character_name);
+$password = strip_tags($password);
 
-$password = hash('sha256', $upass);
+$password = hash('sha256', $password);
 
-$query = "SELECT user_id, username, logged_in FROM LOA.t_user WHERE username = '$username' AND password = '$password'";
+$query = "
+SELECT 
+       LOA.t_character.character_id, 
+       LOA.t_character.character_name, 
+       LOA.t_user.logged_in 
+FROM LOA.t_character 
+JOIN LOA.t_user ON LOA.t_character.character_id = LOA.t_user.character_id
+WHERE 
+      character_name = '$character_name' AND 
+      password = '$password'
+";
 $result = mysqli_query($link, $query);
 
 $row = mysqli_fetch_row($result);
 if ($row) {
     if ($row[2] == 0) {
-        $query2 = "UPDATE LOA.t_user SET logged_in = 1 WHERE user_id = '$row[0]'";
+        $query2 = "UPDATE LOA.t_user SET logged_in = 1 WHERE character_id = '$row[0]'";
         if ($result2 = mysqli_query($link, $query2)) {
-            $dataArray = array('success' => true, 'error' => '', 'user_id' => "$row[0]", 'username' => "$username");
+            $dataArray = array('success' => true, 'error' => '', 'character_id' => "$row[0]", 'character_name' => "$character_name");
         } else {
             $dataArray = array('success' => false, 'error' => 'Something went wrong');
         }

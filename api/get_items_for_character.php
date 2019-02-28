@@ -1,17 +1,17 @@
 <?php
 include_once 'database.php';
 
-$npc_id = $_POST['npc_id'];
+$character_id = $_POST['character_id'];
 
-if ($npc_id == '') {
-    $dataArray = array('success' => false, 'error' => 'no npc id provided');
+if ($character_id == '') {
+    $dataArray = array('success' => false, 'error' => 'no character id provided');
     header('Content-Type: application/json');
     die(json_encode($dataArray));
 }
 
-$npc_id = strip_tags($npc_id);
+$character_id = strip_tags($character_id);
 
-$query = "SELECT item_id FROM LOA.t_npc_item WHERE npc_id = '$npc_id'";
+$query = "SELECT item_id FROM LOA.t_character_item WHERE character_id = '$character_id'";
 $dataArray = array();
 
 if ($result = mysqli_query($link, $query)) {

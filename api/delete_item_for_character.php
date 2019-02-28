@@ -1,18 +1,18 @@
 <?php
 include_once 'database.php';
 
-$npc_id = $_POST['npc_id'];
+$character_id = $_POST['character_id'];
 $item_id = $_POST['item_id'];
 
-if ($npc_id == '' || $item_id == '') {
-    $dataArray = array('success' => false, 'error' => 'must provide both npc id and item id');
+if ($character_id == '' || $item_id == '') {
+    $dataArray = array('success' => false, 'error' => 'must provide both character id and item id');
     header('Content-Type: application/json');
     die(json_encode($dataArray));
 }
 
-$npc_id = strip_tags($npc_id);
+$character_id = strip_tags($character_id);
 
-$query = "DELETE FROM LOA.t_npc_item WHERE npc_id = '$npc_id' AND item_id = '$item_id' LIMIT 1";
+$query = "DELETE FROM LOA.t_character_item WHERE character_id = '$character_id' AND item_id = '$item_id' LIMIT 1";
 
 $dataArray = array();
 if ($result = mysqli_query($link, $query)) {

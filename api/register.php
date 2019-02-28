@@ -1,40 +1,56 @@
 <?php
 include_once 'database.php';
 
-$username = $_POST['username'];
-$upass = $_POST['password'];
+$character_name = $_POST['username'];
+$password = $_POST['password'];
 
-if ($username == '' || $upass == '') {
+if ($character_name == '' || $password == '') {
     $dataArray = array('success' => false, 'error' => 'empty username or password');
     header('Content-Type: application/json');
     die(json_encode($dataArray));
 }
 
-$username = strip_tags($username);
-$upass = strip_tags($upass);
+$character_name = strip_tags($character_name);
+$password = strip_tags($password);
 
-$password = hash('sha256', $upass);
+$password = hash('sha256', $password);
 
-$query = "SELECT username FROM LOA.t_user WHERE username = '$username'";
+$query = "SELECT character_name FROM LOA.t_character WHERE character_name = '$character_name'";
 $result = mysqli_query($link, $query);
 
 $row = mysqli_fetch_row($result);
 if ($row) {
     $dataArray = array('success' => false, 'error' => 'user already exists');
 } else {
-    $query2 = "INSERT INTO LOA.t_user (
-        username,
-        password,
-        signup_date
+    $character_query = "
+    INSERT INTO LOA.t_character (
+        character_name
     ) values (
-        '$username',
-        '$password',
-        CURRENT_TIMESTAMP
+        '$character_name'
     )";
-    if ($result2 = mysqli_query($link, $query2)) {
-        $dataArray = array('success' => true, 'error' => '', 'username' => "$username");
+
+    if ($character_result = mysqli_query($link, $character_query)) {
+        mysqli_free_result($character_result);
+        if ($character_id = mysqli_insert_id($link)) {
+            $user_query = "
+            INSERT INTO LOA.t_user (
+                character_id,
+                password
+            ) VALUES (
+                '$character_id',
+                '$password'
+            )";
+            if ($user_result = mysqli_query($link, $user_query)) {
+                mysqli_free_result($user_result);
+                $dataArray = array('success' => true, 'error' => '');
+            } else {
+                $dataArray = array('success' => false, 'error' => 'Could not insert into t_user');
+            }
+        } else {
+            $dataArray = array('success' => false, 'error' => 'Could not get character_id');
+        }
     } else {
-        $dataArray = array('success' => false, 'error' => 'Could not create user.');
+        $dataArray = array('success' => false, 'error' => 'Could not insert into t_character');
     }
 }
 

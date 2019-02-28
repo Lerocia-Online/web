@@ -1,13 +1,54 @@
 <?php
 include_once 'database.php';
 
-$query = "SELECT npc_id, npc_name, position_x, position_y, position_z, rotation_x, rotation_y, rotation_z, type, dialogue_id FROM LOA.t_npc";
+$query = "
+SELECT 
+	LOA.t_character.character_id, 
+	LOA.t_npc.npc_id,
+	character_name, 
+	character_personality, 
+	position_x, 
+	position_y, 
+	position_z, 
+	rotation_x, 
+	rotation_y, 
+	rotation_z, 
+	max_health, 
+	current_health, 
+	max_stamina, 
+	current_stamina, 
+	gold, 
+	weapon_id, 
+	apparel_id, 
+	dialogue_id
+FROM LOA.t_character
+JOIN LOA.t_npc ON LOA.t_character.character_id = LOA.t_npc.character_id
+";
 $dataArray = array();
 
 if ($result = mysqli_query($link, $query)) {
     // Fetch one and one row
     while ($row = mysqli_fetch_row($result)) {
-        $dataArray[] = array('npc_id' => $row[0], 'npc_name' => $row[1], 'position_x' => $row[2], 'position_y' => $row[3], 'position_z' => $row[4], 'rotation_x' => $row[5], 'rotation_y' => $row[6], 'rotation_z' => $row[7], 'type' => $row[8], 'dialogue_id' => $row[9]);
+        $dataArray[] = array(
+            'character_id' => $row[0],
+            'npc_id' => $row[1],
+            'character_name' => $row[2],
+            'character_personality' => $row[3],
+            'position_x' => $row[4],
+            'position_y' => $row[5],
+            'position_z' => $row[6],
+            'rotation_x' => $row[7],
+            'rotation_y' => $row[8],
+            'rotation_z' => $row[9],
+            'max_health' => $row[10],
+            'current_health' => $row[11],
+            'max_stamina' => $row[12],
+            'current_stamina' => $row[13],
+            'gold' => $row[14],
+            'weapon_id' => $row[15],
+            'apparel_id' => $row[16],
+            'dialogue_id' => $row[17]
+        );
     }
     // Free result set
     mysqli_free_result($result);

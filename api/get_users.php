@@ -1,13 +1,56 @@
 <?php
 include_once 'database.php';
 
-$query = "SELECT user_id, username, signup_date FROM LOA.t_user";
+$query = "
+SELECT 
+	LOA.t_character.character_id, 
+	LOA.t_user.user_id,
+	character_name, 
+	character_personality, 
+	position_x, 
+	position_y, 
+	position_z, 
+	rotation_x, 
+	rotation_y, 
+	rotation_z, 
+	max_health, 
+	current_health, 
+	max_stamina, 
+	current_stamina, 
+	gold, 
+	weapon_id, 
+	apparel_id, 
+	dialogue_id,
+    LOA.t_user.logged_in
+FROM LOA.t_character
+JOIN LOA.t_user ON LOA.t_character.character_id = LOA.t_user.character_id
+";
 $dataArray = array();
 
 if ($result = mysqli_query($link, $query)) {
     // Fetch one and one row
     while ($row = mysqli_fetch_row($result)) {
-        $dataArray[] = array('user_id' => $row[0], 'username' => $row[1], 'signup_date' => $row[2]);
+        $dataArray[] = array(
+            'character_id' => $row[0],
+            'user_id' => $row[1],
+            'character_name' => $row[2],
+            'character_personality' => $row[3],
+            'position_x' => $row[4],
+            'position_y' => $row[5],
+            'position_z' => $row[6],
+            'rotation_x' => $row[7],
+            'rotation_y' => $row[8],
+            'rotation_z' => $row[9],
+            'max_health' => $row[10],
+            'current_health' => $row[11],
+            'max_stamina' => $row[12],
+            'current_stamina' => $row[13],
+            'gold' => $row[14],
+            'weapon_id' => $row[15],
+            'apparel_id' => $row[16],
+            'dialogue_id' => $row[17],
+            'logged_in' => $row[18]
+        );
     }
     // Free result set
     mysqli_free_result($result);
