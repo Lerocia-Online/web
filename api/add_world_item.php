@@ -21,7 +21,7 @@ $position_x = (float) $position_x;
 $position_y = (float) $position_y;
 $position_z = (float) $position_z;
 
-$query = "INSERT INTO LOA.t_world_item VALUES ('$world_id', '$item_id', '$position_x', '$position_y', '$position_z')";
+$query = "INSERT INTO LOA.t_world_item (world_id, item_id, position_x, position_y, position_z) VALUES ('$world_id', '$item_id', '$position_x', '$position_y', '$position_z')";
 
 $dataArray = array();
 if ($result = mysqli_query($link, $query)) {

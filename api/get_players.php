@@ -18,6 +18,9 @@ SELECT
 	max_stamina, 
 	current_stamina, 
 	gold, 
+    base_weight,
+    base_damage,
+    base_armor,
 	weapon_id, 
 	apparel_id, 
 	dialogue_id,
@@ -46,10 +49,13 @@ if ($result = mysqli_query($link, $query)) {
             'max_stamina' => $row[12],
             'current_stamina' => $row[13],
             'gold' => $row[14],
-            'weapon_id' => $row[15],
-            'apparel_id' => $row[16],
-            'dialogue_id' => $row[17],
-            'logged_in' => $row[18]
+            'base_weight' => $row[15],
+            'base_damage' => $row[16],
+            'base_armor' => $row[17],
+            'weapon_id' => $row[18],
+            'apparel_id' => $row[19],
+            'dialogue_id' => $row[20],
+            'logged_in' => $row[21]
         );
     }
     // Free result set

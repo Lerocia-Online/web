@@ -13,7 +13,7 @@ $character_id = strip_tags($character_id);
 
 $query = "
 SELECT 
-    LOA.t_character.character_id, 
+    character_id, 
 	character_name, 
 	character_personality, 
 	position_x, 
@@ -27,6 +27,9 @@ SELECT
 	max_stamina, 
 	current_stamina, 
 	gold, 
+    base_weight,
+    base_damage,
+    base_armor,
 	weapon_id, 
 	apparel_id, 
 	dialogue_id
@@ -54,9 +57,12 @@ if ($row) {
         'max_stamina' => $row[11],
         'current_stamina' => $row[12],
         'gold' => $row[13],
-        'weapon_id' => $row[14],
-        'apparel_id' => $row[15],
-        'dialogue_id' => $row[16]
+        'base_weight' => $row[14],
+        'base_damage' => $row[15],
+        'base_armor' => $row[16],
+        'weapon_id' => $row[17],
+        'apparel_id' => $row[18],
+        'dialogue_id' => $row[19]
     );
 } else {
     $dataArray = array('success' => false, 'error' => 'Something went wrong');
