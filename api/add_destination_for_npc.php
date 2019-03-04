@@ -16,7 +16,7 @@ if ($character_id == '') {
 $character_id = strip_tags($character_id);
 
 $query = "
-INSERT INTO LOA.t_npc_destination (character_id, position_x, position_y, position_z) 
+INSERT INTO LOA.t_npc_destination (character_id, position_x, position_y, position_z, duration) 
 VALUES ('$character_id', '$position_x', '$position_y', '$position_z', '$duration')
 ";
 
