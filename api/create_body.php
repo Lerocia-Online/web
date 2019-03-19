@@ -47,7 +47,7 @@ if ($row) {
         gold = '$gold',
         weapon_id = '$weapon_id',
         apparel_id = '$apparel_id',
-        dialogue_id = '$dialogue_id',
+        dialogue_id = '$dialogue_id'
     WHERE character_id = '$row[0]'
     ";
     if (mysqli_query($link, $update_query)) {
@@ -57,41 +57,41 @@ if ($row) {
     }
 } else {
     $character_query = "
-INSERT INTO LOA.t_character (
-    character_name,
-    character_personality,
-    position_x,
-    position_y,
-    position_z,
-    rotation_x,
-    rotation_y,
-    rotation_z,
-    max_health,
-    current_health,
-    max_stamina,
-    current_stamina,
-    gold,
-    weapon_id,
-    apparel_id,
-    dialogue_id
-) values (
-    '$character_name',
-    '$character_personality',
-    '$position_x',
-    '$position_y',
-    '$position_z',
-    '$rotation_x',
-    '$rotation_y',
-    '$rotation_z',
-    '$max_health',
-    '$current_health',
-    '$max_stamina',
-    '$current_stamina',
-    '$gold',
-    '$weapon_id',
-    '$apparel_id',
-    '$dialogue_id'
-)";
+    INSERT INTO LOA.t_character (
+        character_name,
+        character_personality,
+        position_x,
+        position_y,
+        position_z,
+        rotation_x,
+        rotation_y,
+        rotation_z,
+        max_health,
+        current_health,
+        max_stamina,
+        current_stamina,
+        gold,
+        weapon_id,
+        apparel_id,
+        dialogue_id
+    ) values (
+        '$character_name',
+        '$character_personality',
+        '$position_x',
+        '$position_y',
+        '$position_z',
+        '$rotation_x',
+        '$rotation_y',
+        '$rotation_z',
+        '$max_health',
+        '$current_health',
+        '$max_stamina',
+        '$current_stamina',
+        '$gold',
+        '$weapon_id',
+        '$apparel_id',
+        '$dialogue_id'
+    )";
 
     if ($character_result = mysqli_query($link, $character_query)) {
         mysqli_free_result($character_result);
