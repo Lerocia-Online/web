@@ -51,7 +51,7 @@ if ($row) {
     WHERE character_id = '$row[0]'
     ";
     if (mysqli_query($link, $update_query)) {
-        $dataArray = array('success' => true, 'error' => '', 'character_id' => $row[0]);
+        $dataArray = array('success' => true, 'error' => '', 'character_id' => (int) $row[0]);
     } else {
         $dataArray = array('success' => false, 'error' => 'Could not update t_character');
     }
