@@ -32,7 +32,7 @@ $result = mysqli_query($link, $query);
 $row = mysqli_fetch_row($result);
 if ($row) {
     $update_query = "
-    UPDATE t_character 
+    UPDATE LOA.t_character 
     SET character_personality = '$character_personality',
         position_x = '$position_x',
         position_y = '$position_y',
