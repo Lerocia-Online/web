@@ -26,7 +26,37 @@ if ($character_name == '') {
 
 $character_name = strip_tags($character_name);
 
-$character_query = "
+$query = "SELECT character_id FROM LOA.t_character WHERE character_name = '$character_name'";
+$result = mysqli_query($link, $query);
+
+$row = mysqli_fetch_row($result);
+if ($row) {
+    $update_query = "
+    UPDATE t_character 
+    SET character_personality = '$character_personality',
+        position_x = '$position_x',
+        position_y = '$position_y',
+        position_z = '$position_z',
+        rotation_x = '$rotation_x',
+        rotation_y = '$rotation_y',
+        rotation_z = '$rotation_z',
+        max_health = '$max_health',
+        current_health = '$current_health',
+        max_stamina = '$max_stamina',
+        current_stamina = '$current_stamina',
+        gold = '$gold',
+        weapon_id = '$weapon_id',
+        apparel_id = '$apparel_id',
+        dialogue_id = '$dialogue_id',
+    WHERE character_id = '$row[0]'
+    ";
+    if (mysqli_query($link, $update_query)) {
+        $dataArray = array('success' => true, 'error' => '', 'character_id' => $row[0]);
+    } else {
+        $dataArray = array('success' => false, 'error' => 'Could not update t_character');
+    }
+} else {
+    $character_query = "
 INSERT INTO LOA.t_character (
     character_name,
     character_personality,
@@ -63,26 +93,27 @@ INSERT INTO LOA.t_character (
     '$dialogue_id'
 )";
 
-if ($character_result = mysqli_query($link, $character_query)) {
-    mysqli_free_result($character_result);
-    if ($character_id = mysqli_insert_id($link)) {
-        $body_query = "
+    if ($character_result = mysqli_query($link, $character_query)) {
+        mysqli_free_result($character_result);
+        if ($character_id = mysqli_insert_id($link)) {
+            $body_query = "
         INSERT INTO LOA.t_body (
             character_id
         ) VALUES (
             '$character_id'
         )";
-        if ($body_result = mysqli_query($link, $body_query)) {
-            mysqli_free_result($body_result);
-            $dataArray = array('success' => true, 'error' => '', 'character_id' => $character_id);
+            if ($body_result = mysqli_query($link, $body_query)) {
+                mysqli_free_result($body_result);
+                $dataArray = array('success' => true, 'error' => '', 'character_id' => $character_id);
+            } else {
+                $dataArray = array('success' => false, 'error' => 'Could not insert into t_body');
+            }
         } else {
-            $dataArray = array('success' => false, 'error' => 'Could not insert into t_body');
+            $dataArray = array('success' => false, 'error' => 'Could not get character_id');
         }
     } else {
-        $dataArray = array('success' => false, 'error' => 'Could not get character_id');
+        $dataArray = array('success' => false, 'error' => 'Could not insert into t_character');
     }
-} else {
-    $dataArray = array('success' => false, 'error' => 'Could not insert into t_character');
 }
 
 header('Content-Type: application/json');
