@@ -26,13 +26,6 @@ if ($character_name == '') {
 
 $character_name = strip_tags($character_name);
 
-$position_x = (float) $position_x;
-$position_y = (float) $position_y;
-$position_z = (float) $position_z;
-$rotation_x = (float) $rotation_x;
-$rotation_y = (float) $rotation_y;
-$rotation_z = (float) $rotation_z;
-
 $character_query = "
 INSERT INTO LOA.t_character (
     character_name,
