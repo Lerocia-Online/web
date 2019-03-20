@@ -23,7 +23,8 @@ SELECT
     base_armor,
 	weapon_id, 
 	apparel_id, 
-	dialogue_id
+	dialogue_id,
+    LOA.t_npc.respawn_time
 FROM LOA.t_character
 JOIN LOA.t_npc ON LOA.t_character.character_id = LOA.t_npc.character_id
 ";
@@ -53,7 +54,8 @@ if ($result = mysqli_query($link, $query)) {
             'base_armor' => $row[17],
             'weapon_id' => $row[18],
             'apparel_id' => $row[19],
-            'dialogue_id' => $row[20]
+            'dialogue_id' => $row[20],
+            'respawn_time' => $row[21]
         );
     }
     // Free result set
