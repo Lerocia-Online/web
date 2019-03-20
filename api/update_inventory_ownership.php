@@ -1,8 +1,8 @@
 <?php
 include_once 'database.php';
 
-$original_owner_id = $_POST['original_owner'];
-$new_owner_id = $_POST['new_owner'];
+$original_owner_id = $_POST['original_owner_id'];
+$new_owner_id = $_POST['new_owner_id'];
 
 if ($original_owner_id == '' || $new_owner_id == '') {
     $dataArray = array('success' => false, 'error' => 'must provide both original owner and new owner');
