@@ -67,8 +67,8 @@ if ($row) {
         'apparel_id' => $row[18],
         'dialogue_id' => $row[19],
         'origin_x' => $row[20],
-        'origin_x' => $row[21],
-        'origin_x' => $row[22]
+        'origin_y' => $row[21],
+        'origin_z' => $row[22]
     );
 } else {
     $dataArray = array('success' => false, 'error' => 'Something went wrong');
