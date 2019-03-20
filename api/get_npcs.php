@@ -24,8 +24,11 @@ SELECT
 	weapon_id, 
 	apparel_id, 
 	dialogue_id,
+    origin_x,
+    origin_y,
+    origin_z,
     LOA.t_npc.respawn_time,
-    LOA.t_npc.look_radius
+    LOA.t_npc.look_radius 
 FROM LOA.t_character
 JOIN LOA.t_npc ON LOA.t_character.character_id = LOA.t_npc.character_id
 ";
@@ -56,8 +59,11 @@ if ($result = mysqli_query($link, $query)) {
             'weapon_id' => $row[18],
             'apparel_id' => $row[19],
             'dialogue_id' => $row[20],
-            'respawn_time' => $row[21],
-            'look_radius' => $row[22]
+            'origin_x' => $row[21],
+            'origin_y' => $row[22],
+            'origin_z' => $row[23],
+            'respawn_time' => $row[24],
+            'look_radius' => $row[25],
         );
     }
     // Free result set

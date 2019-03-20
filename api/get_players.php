@@ -24,6 +24,9 @@ SELECT
 	weapon_id, 
 	apparel_id, 
 	dialogue_id,
+    origin_x,
+    origin_y,
+    origin_z,
     LOA.t_player.logged_in
 FROM LOA.t_character
 JOIN LOA.t_player ON LOA.t_character.character_id = LOA.t_player.character_id
@@ -55,7 +58,10 @@ if ($result = mysqli_query($link, $query)) {
             'weapon_id' => $row[18],
             'apparel_id' => $row[19],
             'dialogue_id' => $row[20],
-            'logged_in' => $row[21]
+            'origin_x' => $row[21],
+            'origin_y' => $row[22],
+            'origin_z' => $row[23],
+            'logged_in' => $row[24]
         );
     }
     // Free result set

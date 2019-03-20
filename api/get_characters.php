@@ -22,7 +22,10 @@ SELECT
     base_armor,
 	weapon_id, 
 	apparel_id, 
-	dialogue_id
+	dialogue_id,
+    origin_x,
+    origin_y,
+    origin_z
 FROM LOA.t_character
 ";
 $dataArray = array();
@@ -50,7 +53,10 @@ if ($result = mysqli_query($link, $query)) {
             'base_armor' => $row[16],
             'weapon_id' => $row[17],
             'apparel_id' => $row[18],
-            'dialogue_id' => $row[19]
+            'dialogue_id' => $row[19],
+            'origin_x' => $row[20],
+            'origin_y' => $row[21],
+            'origin_z' => $row[22],
         );
     }
     // Free result set

@@ -3,6 +3,9 @@ include_once 'database.php';
 
 $character_name = $_POST['username'];
 $password = $_POST['password'];
+$origin_x = $_POST['origin_x'];
+$origin_y = $_POST['origin_y'];
+$origin_z = $_POST['origin_z'];
 
 if ($character_name == '' || $password == '') {
     $dataArray = array('success' => false, 'error' => 'empty username or password');
@@ -24,9 +27,15 @@ if ($row) {
 } else {
     $character_query = "
     INSERT INTO LOA.t_character (
-        character_name
+        character_name,
+        origin_x,
+        origin_y,
+        origin_z
     ) values (
-        '$character_name'
+        '$character_name',
+        '$origin_x',
+        '$origin_y',
+        '$origin_z',
     )";
 
     if ($character_result = mysqli_query($link, $character_query)) {

@@ -45,7 +45,10 @@ INSERT INTO LOA.t_character (
     gold,
     weapon_id,
     apparel_id,
-    dialogue_id
+    dialogue_id,
+    origin_x,
+    origin_y,
+    origin_z
 ) values (
     '$character_name',
     '$character_personality',
@@ -62,7 +65,10 @@ INSERT INTO LOA.t_character (
     '$gold',
     '$weapon_id',
     '$apparel_id',
-    '$dialogue_id'
+    '$dialogue_id',
+    '$position_x',
+    '$position_y',
+    '$position_z',
 )";
 
 if ($character_result = mysqli_query($link, $character_query)) {
