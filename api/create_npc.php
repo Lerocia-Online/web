@@ -17,6 +17,7 @@ $gold = $_POST['gold'];
 $weapon_id = $_POST['weapon_id'];
 $apparel_id = $_POST['apparel_id'];
 $dialogue_id = $_POST['dialogue_id'];
+$respawn_time = $_POST['respawn_time'];
 
 if ($character_name == '') {
     $dataArray = array('success' => false, 'error' => 'must provide npc name');
@@ -68,9 +69,11 @@ if ($character_result = mysqli_query($link, $character_query)) {
     if ($character_id = mysqli_insert_id($link)) {
         $npc_query = "
         INSERT INTO LOA.t_npc (
-            character_id
+            character_id,
+            respawn_time
         ) VALUES (
-            '$character_id'
+            '$character_id',
+            '$respawn_time'
         )";
         if ($npc_result = mysqli_query($link, $npc_query)) {
             mysqli_free_result($npc_result);
