@@ -35,7 +35,7 @@ if ($row) {
         '$character_name',
         '$origin_x',
         '$origin_y',
-        '$origin_z',
+        '$origin_z'
     )";
 
     if ($character_result = mysqli_query($link, $character_query)) {
